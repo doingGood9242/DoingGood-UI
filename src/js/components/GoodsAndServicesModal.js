@@ -8,8 +8,7 @@ class GoodsAndServicesModal extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            goodsSelected:'',
-            servicesSelected:'',
+            goodsOrServicesSelected:'',
             goods:'',
             description:'',
             rate:'',
@@ -17,8 +16,7 @@ class GoodsAndServicesModal extends React.Component {
             maximum:'',
             rateType:''
         };
-        this.goodsSelected = this.goodsSelected.bind(this);
-        this.servicesSelected = this.servicesSelected.bind(this);
+        this.goodsOrServicesSelected = this.goodsOrServicesSelected.bind(this);
         this.goods = this.goods.bind(this);
         this.description = this.description.bind(this);
         this.rate = this.rate.bind(this);
@@ -30,8 +28,7 @@ class GoodsAndServicesModal extends React.Component {
 
     handleSubmit(event){
         this.props.searchPostingAction.postWorkRequestAction(
-                this.state.goodsSelected,
-                this.state.servicesSelected,
+                this.state.goodsOrServicesSelected,
                 this.state.goods,
                 this.state.description,
                 this.state.rate,
@@ -41,11 +38,8 @@ class GoodsAndServicesModal extends React.Component {
             this.props.postType);
     }
 
-    goodsSelected(event){
-        this.setState({ goodsSelected:event.target.value})
-    }
-    servicesSelected(event){
-        this.setState({ servicesSelected:event.target.value})
+    goodsOrServicesSelected(event){
+        this.setState({ goodsOrServicesSelected:event.target.value})
     }
     goods(event){
         this.setState({ goods:event.target.value})
@@ -88,8 +82,8 @@ class GoodsAndServicesModal extends React.Component {
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label className="skill-text">Services/Goods Required</Form.Label>
                         <div>
-                            <input className="goodsAndServices" type="radio" name="goodRequired" onChange={this.goodsSelected} />Goods
-                            <input className="goodsAndServices" type="radio" name="goodRequired" onChange={this.servicesSelected} />Services
+                            <input className="goodsAndServices" type="radio" value="GOODS" name="goodRequired" onChange={this.goodsOrServicesSelected} />Goods
+                            <input className="goodsAndServices" type="radio" value="SERVICES" name="goodRequired" onChange={this.goodsOrServicesSelected} />Services
                         </div>
                         <Form.Label >Goods/Service:</Form.Label>
                         <Form.Control type="text" onChange={this.goods} />
@@ -102,9 +96,20 @@ class GoodsAndServicesModal extends React.Component {
                         <Form.Label>Maximum:</Form.Label>
                         <Form.Control type="text" onChange={this.maximum} />
                         <Form.Label>Rate Type</Form.Label>
-                        <div>
-                            <input type="radio" className="goodsAndServices" name="rateType" onChange={this.rateType}/>Per Item
-                        </div>
+                        { this.state.goodsOrServicesSelected === "GOODS" &&
+                            <div>
+                                <input type="radio" id="perItem" className="goodsAndServices" value="PERITEM" name="rateType" onChange={this.rateType}/>
+                                <label htmlFor="perItem">Per Item</label>
+                            </div>
+                        }
+                        { this.state.goodsOrServicesSelected === "SERVICES" &&
+                            <div>
+                                <input type="radio" id="perHour" className="goodsAndServices" value="PERHOUR" name="rateType" onChange={this.rateType}/>
+                                <label htmlFor="perHour">Per Hour</label>
+                                <input type="radio" id="perDay" className="goodsAndServices" value="PERDAY" name="rateType" onChange={this.rateType}/>
+                                <label htmlFor="perDay">Per Day</label>
+                            </div>
+                        }
                     </Form.Group>
                     <button className="btn btn-default goodsAndServicesButton goodsAndServicesButtonRight" onClick={this.handleSubmit} type="button">Save</button>
                     <button className="btn btn-default goodsAndServicesButton" onClick={this.props.handleCloseModal}>Close</button>
