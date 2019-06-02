@@ -20,6 +20,7 @@ import dginsta from "../../assests/images/home/dg-insta.png";
 import dgfb from "../../assests/images/home/dg-fb.png";
 import dgtwitter from "../../assests/images/home/dg-twitter.png";
 import GoodsAndServicesModal from "./GoodsAndServicesModal";
+import RedirectToLoginModal from "./RedirectToLoginModal";
 
 
 class LandingPage extends Component {
@@ -147,10 +148,17 @@ class LandingPage extends Component {
                                 className="btn btn-primary btn-shadow btn-pill text-uppercase py-2 px-5 font-weight-bold" onClick={this.handleOfferedOpenModal}>Post
                                 your Service or goods
                             </div>
-                            <GoodsAndServicesModal
-                                showModal={this.state.showOfferedModal}
-                                handleCloseModal={this.handleCloseModal}
-                            />
+                            {this.props.idToken ?
+                                <GoodsAndServicesModal
+                                    showModal={this.state.showOfferedModal}
+                                    handleCloseModal={this.handleCloseModal}
+                                />
+                                :
+                                <RedirectToLoginModal
+                                    showModal={this.state.showOfferedModal}
+                                    handleCloseModal={this.handleCloseModal}
+                                />
+                            }
                         </div>
                     </div>
                     <div className="row">

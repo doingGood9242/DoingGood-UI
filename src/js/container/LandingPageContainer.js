@@ -13,7 +13,7 @@ class LandingPageContainer extends Component {
     render() {
         return (
             <div>
-                <LandingPage/>
+                <LandingPage {...this.props} />
             </div>
         );
     }
@@ -23,6 +23,7 @@ function mapStateToProps(state) {
     return {
         token:state.loginReducer.token,
         user: state.loginReducer.user,
+        idToken: state.loginReducer.session.idToken
         // WorkRequests:state.landingpage.WorkRequests,
         // loadInterestShownWRData:state.landingpage.loadInterestShownWRData
     };
