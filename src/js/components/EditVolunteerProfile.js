@@ -171,6 +171,7 @@ class EditVolunteerProfile extends Component{
                                 handleCloseModal={this.handleCloseModal}
                                 searchPostingAction={this.props.searchPostingAction}
                                 postType={'OFFERED'}
+                                session={this.props.session}
                             />
                         </div>
                         <div className="col-md-6 col-sm-12">
@@ -181,8 +182,9 @@ class EditVolunteerProfile extends Component{
                             <GoodsAndServicesModal
                                 showModal={this.state.showWantedModal}
                                 handleCloseModal={this.handleCloseModal}
-                                // searchPostingAction={this.props.searchPostingAction}
+                                searchPostingAction={this.props.searchPostingAction}
                                 postType={'WANTED'}
+                                session={this.props.session}
                             />
                         </div>
                     </div>
@@ -208,14 +210,14 @@ class EditVolunteerProfile extends Component{
                     </div>
                     <div className="container-fluid dg-footer bg-primary py-3">
                         <div className="row">
-                            <div className="col-sm-3 col-3 d-flex align-items-center"><a href="#"
-                                                                                         className="font-weight-bold text-white">JOIN</a>
+                            <div className="col-sm-3 col-3 d-flex align-items-center"><Link to="/usersignup"
+                                                                                         className="font-weight-bold text-white">JOIN</Link>
                             </div>
-                            <div className="col-sm-3 col-4 d-flex align-items-center"><a href="#"
-                                                                                         className="font-weight-bold text-white">Login</a>
+                            <div className="col-sm-3 col-4 d-flex align-items-center"><Link to="/login"
+                                                                                         className="font-weight-bold text-white">Login</Link>
                             </div>
-                            <div className="col-sm-3 col-5 d-flex align-items-center"><a href="#" className="font-weight-bold text-white">About
-                                DoingGood</a></div>
+                            <div className="col-sm-3 col-5 d-flex align-items-center"><Link to="/" className="font-weight-bold text-white">About
+                                DoingGood</Link></div>
                             <div className="col-sm-3 col-12">
                                 <ul className="list-inline mb-0">
                                     <li className="list-inline-item"><a href="#"><img src={dginsta} alt="logo" width="30"/></a>

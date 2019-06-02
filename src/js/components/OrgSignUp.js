@@ -190,11 +190,11 @@ class OrgSignUp extends Component {
                             </div>
                             <div className="form-group mb-2">
                                 <label>Password*</label>
-                                <input type="text" onChange={this.handleChange} name="password" placeholder={this.passwordError} className={this.state.passwordValid ? 'form-control' : this.state.highlightclass + " form-control"}/>
+                                <input type="password" name="password" onChange={this.handleChange}  placeholder={this.passwordError} className={this.state.passwordValid ? 'form-control' : this.state.highlightclass + " form-control"}/>
                             </div>
                             <div className="form-group mb-2">
                                 <label>Phone Number</label>
-                                <input className="form-control" type="text" onChange={this.handleChange} placeholder="Please enter phone number"/>
+                                <input className="form-control" type="text" onChange={this.handleChange} placeholder="Please enter phone number" maxLength='10'/>
                             </div>
                             <div className="form-group mb-3">
                                 <label>About Organization</label>

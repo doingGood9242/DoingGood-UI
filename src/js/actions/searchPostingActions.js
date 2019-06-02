@@ -48,7 +48,8 @@ const searchPostingActions = {
                                     minimum,
                                     maximum,
                                     rateType,
-                                    postType) {
+                                    postType,
+                                    upId) {
         const request = {
             method: 'post',
             responseType: 'json',
@@ -56,12 +57,13 @@ const searchPostingActions = {
             data: {
                 "description": description,
                 "goodOrService":goodsOrServicesSelected,
-                "minimum": minimum,
-                "maximum":maximum,
-                "rate": rate,
+                "minimum": parseInt(minimum, 10),
+                "maximum":parseInt(maximum, 10),
+                "rate": parseInt(rate, 10),
                 "rateType":rateType,
                 "postType":postType,
-                "upId": 0
+                "upId": upId,
+                "id": 0
             },
             headers: {
                 'Content-Type': 'application/json'
@@ -78,7 +80,7 @@ const searchPostingActions = {
                     }
                 },err =>{
                     if(err.response.data.status === 400){
-                        toastr.error('Error ', 'OTP is expired.You cannot reset password');
+                        toastr.error('Error ', 'occured');
                     }
                 })
         }

@@ -211,11 +211,11 @@ class UserSignUp extends Component {
                             </div>
                             <div className="form-group mb-2">
                                 <label>Password*</label>
-                                <input name="password" onChange={this.handleChange} type="text" required placeholder={this.passwordError} className={this.state.passwordValid ? 'form-control' : this.state.highlightclass+" form-control"}/>
+                                <input name="password" onChange={this.handleChange} type="password" required placeholder={this.passwordError} className={this.state.passwordValid ? 'form-control' : this.state.highlightclass+" form-control"}/>
                             </div>
                             <div className="form-group mb-2">
                                 <label>Phone Number</label>
-                                <input name="phonenumber" className="form-control" onChange={this.handleChange} type="text" placeholder="Please enter phone number"/>
+                                <input name="phonenumber" className="form-control" onChange={this.handleChange} type="text" placeholder="Please enter phone number" maxLength='10'/>
                             </div>
                             <div className="form-group mb-3">
                                 <label>About Me</label>

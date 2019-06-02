@@ -14,7 +14,8 @@ class GoodsAndServicesModal extends React.Component {
             rate:'',
             minimum:'',
             maximum:'',
-            rateType:''
+            rateType:'',
+            upId: props.session ?  props.session.id : 0
         };
         this.goodsOrServicesSelected = this.goodsOrServicesSelected.bind(this);
         this.goods = this.goods.bind(this);
@@ -35,7 +36,9 @@ class GoodsAndServicesModal extends React.Component {
                 this.state.minimum,
                 this.state.maximum,
                 this.state.rateType,
-            this.props.postType);
+            this.props.postType,
+            this.state.upId);
+        this.props.handleCloseModal();
     }
 
     goodsOrServicesSelected(event){
@@ -82,8 +85,8 @@ class GoodsAndServicesModal extends React.Component {
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label className="skill-text">Services/Goods Required</Form.Label>
                         <div>
-                            <input className="goodsAndServices" type="radio" value="GOODS" name="goodRequired" onChange={this.goodsOrServicesSelected} />Goods
-                            <input className="goodsAndServices" type="radio" value="SERVICES" name="goodRequired" onChange={this.goodsOrServicesSelected} />Services
+                            <input className="goodsAndServices" type="radio" value="GOOD" name="goodRequired" onChange={this.goodsOrServicesSelected} />Goods
+                            <input className="goodsAndServices" type="radio" value="SERVICE" name="goodRequired" onChange={this.goodsOrServicesSelected} />Services
                         </div>
                         <Form.Label >Goods/Service:</Form.Label>
                         <Form.Control type="text" onChange={this.goods} />
@@ -96,13 +99,13 @@ class GoodsAndServicesModal extends React.Component {
                         <Form.Label>Maximum:</Form.Label>
                         <Form.Control type="text" onChange={this.maximum} />
                         <Form.Label>Rate Type</Form.Label>
-                        { this.state.goodsOrServicesSelected === "GOODS" &&
+                        { this.state.goodsOrServicesSelected === "GOOD" &&
                             <div>
                                 <input type="radio" id="perItem" className="goodsAndServices" value="PERITEM" name="rateType" onChange={this.rateType}/>
                                 <label htmlFor="perItem">Per Item</label>
                             </div>
                         }
-                        { this.state.goodsOrServicesSelected === "SERVICES" &&
+                        { this.state.goodsOrServicesSelected === "SERVICE" &&
                             <div>
                                 <input type="radio" id="perHour" className="goodsAndServices" value="PERHOUR" name="rateType" onChange={this.rateType}/>
                                 <label htmlFor="perHour">Per Hour</label>

@@ -34,17 +34,16 @@ let signUpUserActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'https://gamma.valueaddsofttech.com:4000/users',
+            url: 'http://13.127.249.79:9500/api/organization/registration',
             data: {
-                "charitydetails":charitydetails,
-                "city":orgcreds.city,
-                "state":orgcreds.state,
-                "mobilenumber" : orgcreds.phone,
-                "email" : orgcreds.email,
-                "password" : orgcreds.password,
-                "role": orgcreds.role,
-                "status": 'inactive',
-
+                "about": "string",
+                "city": orgcreds.city,
+                "email": orgcreds.email,
+                "organizationName": "string",
+                "password": orgcreds.password,
+                "phoneNumber": orgcreds.phone,
+                "state": orgcreds.state,
+                "website": "string"
             },
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +59,6 @@ let signUpUserActions = {
                             type: 'LOGGED_IN',
                             data: response.data.user,token:response.data.accessToken
                         });
-                        // window.localStorage.setItem("sessionUser", JSON.stringify(signupResponse));
                     }
                 },err => {
                     if(err.response.data.code === 409){
@@ -84,25 +82,18 @@ let signUpUserActions = {
             responseType: 'json',
             url: 'http://13.127.249.79:9500/api/member/registration',
             data: {
-                "about": "string",
+                "aboutMe":  orgcreds.aboutme,
+                "address1": "string",
+                "address2": "string",
                 "city": orgcreds.city,
                 "email": orgcreds.email,
-                "organizationName": "string",
+                "firstName": orgcreds.firstname,
+                "lastName": orgcreds.lastname,
                 "password": orgcreds.password,
                 "phoneNumber": orgcreds.phone,
                 "state": orgcreds.state,
-                "website": "string"
+                "zipCode": 0
             },
-
-            // "about": "string",
-            // "city": orgcreds.city,
-            // "email": orgcreds.email,
-            // "organizationName": "string",
-            // "password": orgcreds.password,
-            // "phoneNumber": orgcreds.phone,
-            // "state": orgcreds.state,
-            // "website": "string"
-
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -174,7 +165,7 @@ let signUpUserActions = {
         const request = {
             method: 'patch',
             responseType: 'json',
-            url: '/activateuser?email='+email,
+            url: 'http://13.127.249.79:9500/api/activateuser?email='+email,
             data: {
                 "status": updatData.status
             },

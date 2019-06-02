@@ -32,6 +32,7 @@ class SearchPostingContainer extends Component {
                         hideModalFlag={this.props.hideModalFlag}
                         organizationAction={this.props.organizationAction}
                         getAllOrgs={this.props.getAllOrgs}
+                        session={ this.props.session}
 
                     />
                 }
@@ -43,7 +44,8 @@ class SearchPostingContainer extends Component {
 function mapStateToProps(state) {
     return {showModalFlag: state.postRequestServiceReducer.showModalFlag,
         allPostData: state.postRequestServiceReducer.allPostData,
-        getAllOrgs:state.organizationReducer.getAllOrgs
+        getAllOrgs:state.organizationReducer.getAllOrgs,
+        session:state.loginReducer.session
         };
 }
 
