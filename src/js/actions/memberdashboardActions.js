@@ -8,7 +8,7 @@ const memberdashboardActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/posting/all-posts-by-userid',
+            url: 'https://13.127.249.79:9500/api/posting/all-posts-by-userid',
             data: {
                 "id": userId
             },
@@ -25,9 +25,54 @@ const memberdashboardActions = {
                             data: response.data
                         });
                     }
+                }, err => {
+                    if (err.response.data.status === 400) {
+                        toastr.error('Error ', 'Error occured');
+                    }
+                })
+        }
+    },
+
+    updatePostsByUserAction: function(goodsOrServicesSelected,
+                                      goods,
+                                      description,
+                                      rate,
+                                      minimum,
+                                      maximum,
+                                      rateType,
+                                      postType,
+                                      upId) {
+        const request = {
+            method: 'post',
+            responseType: 'json',
+            url: 'https://13.127.249.79:9500/api/posting/update',
+            data: {
+                "description": description,
+                "goodOrService":goodsOrServicesSelected,
+                "minimum": parseInt(minimum, 10),
+                "maximum":parseInt(maximum, 10),
+                "rate": parseInt(rate, 10),
+                "rateType":rateType,
+                "postType":postType,
+                "upId": upId,
+                "id": 0
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        return (dispatch) => {
+            axios(request)
+                .then(response => {
+                    if (response.status === 200) {
+                        dispatch({
+                            type: 'UPDATEPOSTBYUSER',
+                            // data: response.data
+                        });
+                    }
                 },err =>{
                     if(err.response.data.status === 400){
-                        toastr.error('Error ', 'Error occured');
+                        toastr.error('Error ', 'You cannot update the post');
                     }
                 })
         }

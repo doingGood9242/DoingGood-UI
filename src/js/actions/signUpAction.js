@@ -80,7 +80,7 @@ let signUpUserActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/member/registration',
+            url: 'https://13.127.249.79:9500/api/member/registration',
             data: {
                 "aboutMe":  orgcreds.aboutme,
                 "address1": "string",
@@ -121,7 +121,7 @@ let signUpUserActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/member/registration',
+            url: 'https://13.127.249.79:9500/api/member/registration',
             data: {
                 "about": "string",
                 "city": userCredentials.city,
@@ -165,7 +165,7 @@ let signUpUserActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/validateNewUerToken',
+            url: 'https://13.127.249.79:9500/api/user/validateNewUerToken',
             data: {
                 "token": token,
                 "userName": email

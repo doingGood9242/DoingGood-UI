@@ -203,6 +203,8 @@ class SearchPosting extends Component {
                                                                 showInterestModal={this.state.showInterestModal}
                                                                 handleCloseModal={this.handleCloseModal}
                                                                 posts={this.props.allPostData ? this.props.allPostData.offeredGoodOrService[this.state.dateIndex] : {}}
+                                                                session={ this.props.session}
+                                                                searchPostingAction={this.props.searchPostingAction}
                                                             />
                                                         </li>
                                                     </ul>
@@ -227,6 +229,8 @@ class SearchPosting extends Component {
                                                         showInterestModal={this.state.showWantedInterestModal}
                                                         handleCloseModal={this.handleCloseModal}
                                                         posts={this.props.allPostData ? this.props.allPostData.wantedGoodOrService[this.state.wanteddateIndex] : {}}
+                                                        session={ this.props.session}
+                                                        searchPostingAction={this.props.searchPostingAction}
                                                     />
                                                 </li>
                                             </ul>);

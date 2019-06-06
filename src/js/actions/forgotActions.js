@@ -8,7 +8,7 @@ let forgotActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/valiadateForgetPassword',
+            url: 'https://13.127.249.79:9500/api/user/valiadateForgetPassword',
             data: {
             "confirmPassword": credentials.confirmPassword,
             "newPassword": credentials.password,
@@ -46,7 +46,7 @@ let forgotActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/forgetPassword',
+            url: 'https://13.127.249.79:9500/api/user/forgetPassword',
             data: {
                 "userName" : credentails.email
             },

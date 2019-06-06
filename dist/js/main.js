@@ -3121,7 +3121,7 @@ var searchPostingActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/posting/all-posts',
+            url: 'https://13.127.249.79:9500/api/posting/all-posts',
             data: {},
             headers: {
                 'Content-Type': 'application/json'
@@ -3147,7 +3147,7 @@ var searchPostingActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/posting/new-service-good',
+            url: 'https://13.127.249.79:9500/api/posting/new-service-good',
             data: {
                 "description": description,
                 "goodOrService": goodsOrServicesSelected,
@@ -3298,7 +3298,7 @@ var loginActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/authenticate',
+            url: 'https://13.127.249.79:9500/api/user/authenticate',
             data: {
                 "username": userCredentials.email,
                 "rememberMe": true,
@@ -4431,7 +4431,7 @@ var organizationActions = {
         var request = {
             method: 'get',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/organization/getAllOrganizations',
+            url: 'https://13.127.249.79:9500/api/organization/getAllOrganizations',
             data: {},
             headers: {
                 'Content-Type': 'application/json'
@@ -5756,7 +5756,7 @@ var signUpUserActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/member/registration',
+            url: 'https://13.127.249.79:9500/api/member/registration',
             data: {
                 "aboutMe": orgcreds.aboutme,
                 "address1": "string",
@@ -5796,7 +5796,7 @@ var signUpUserActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/member/registration',
+            url: 'https://13.127.249.79:9500/api/member/registration',
             data: {
                 "about": "string",
                 "city": userCredentials.city,
@@ -5839,7 +5839,7 @@ var signUpUserActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/validateNewUerToken',
+            url: 'https://13.127.249.79:9500/api/user/validateNewUerToken',
             data: {
                 "token": token,
                 "userName": email
@@ -9191,7 +9191,7 @@ var memberdashboardActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/posting/all-posts-by-userid',
+            url: 'https://13.127.249.79:9500/api/posting/all-posts-by-userid',
             data: {
                 "id": userId
             },
@@ -10500,7 +10500,7 @@ var forgotActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/valiadateForgetPassword',
+            url: 'https://13.127.249.79:9500/api/user/valiadateForgetPassword',
             data: {
                 "confirmPassword": credentials.confirmPassword,
                 "newPassword": credentials.password,
@@ -10536,7 +10536,7 @@ var forgotActions = {
         var request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/forgetPassword',
+            url: 'https://13.127.249.79:9500/api/user/forgetPassword',
             data: {
                 "userName": credentails.email
             },

@@ -13,7 +13,7 @@ let loginActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/user/authenticate',
+            url: 'https://13.127.249.79:9500/api/user/authenticate',
             data: {
                 "username" : userCredentials.email,
                 "rememberMe": true,

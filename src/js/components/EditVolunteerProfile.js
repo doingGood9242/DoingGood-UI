@@ -22,6 +22,7 @@ import searchPostingActions from "../actions/searchPostingActions";
 import EditUserProfile from "./EditUserProfile";
 import memberDashboardReducer from "../reducers/memberDashboardReducer";
 import memberdashboardActions from "../actions/memberdashboardActions";
+import EditPostsByUser from "./EditPostsByUser";
 
 class EditVolunteerProfile extends Component{
 
@@ -30,13 +31,15 @@ class EditVolunteerProfile extends Component{
         this.state = {
             showOfferedModal: false,
             showInterestModal:false,
-            showUserEditModal:false
+            showUserEditModal:false,
+            showPostsByUserEditModal: false
         };
         this.handleOfferedOpenModal = this.handleOfferedOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleWantedOpenModal = this.handleWantedOpenModal.bind(this);
         this.gotosearchpostings=this.gotosearchpostings.bind(this);
         this.handleUserEditModal=this.handleUserEditModal.bind(this);
+        this.handlePostbyUserModal=this.handlePostbyUserModal.bind(this);
         this.props.memberdashboardactions.allPostingByUserIdAction(this.props.session.id);
     }
 
@@ -46,15 +49,19 @@ class EditVolunteerProfile extends Component{
     handleWantedOpenModal () {
         this.setState({ showWantedModal: true });
     }
+    handleUserEditModal (event) {
+        this.setState({ showUserEditModal: true});
+    }
 
+    handlePostbyUserModal (event) {
+        this.setState({ showPostsByUserEditModal: true});
+    }
     handleCloseModal () {
         this.setState({
             showOfferedModal: false,
             showWantedModal:false,
-            showUserEditModal:false});
-    }
-    handleUserEditModal (event) {
-        this.setState({ showUserEditModal: true});
+            showUserEditModal:false,
+            showPostsByUserEditModal:false});
     }
 
     gotosearchpostings (){
@@ -155,9 +162,18 @@ class EditVolunteerProfile extends Component{
                         <div className="card w-auto">
                             <div className="card-body">
                                 <h5 className="cardtitle">My POSTS</h5>
-                                {this.props.allPostDataByUserId && this.props.allPostDataByUserId.offeredGoodOrService.map((allPostsByUser) =>
-                                    <li className="cardlabel-Opportunities">
-                                        <span className="label-black">{allPostsByUser.description}</span><span className="pull-right label-black"> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span></li>
+                                {this.props.allPostDataByUserId && this.props.allPostDataByUserId.offeredGoodOrService.map((allPostsByUser ,index) =>
+                                    <li className="cardlabel-Opportunities" onClick={this.handlePostbyUserModal}>
+                                        <span className="label-black">{allPostsByUser.description}</span><span className="pull-right label-black"> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span>
+                                        <EditPostsByUser
+                                        showModal={this.state.showPostsByUserEditModal}
+                                        handleCloseModal={this.handleCloseModal}
+                                        allPostsByUser={this.props.allPostDataByUserId.offeredGoodOrService[index]}
+                                        session={this.props.session}
+                                        memberdashboardactions={this.props.memberdashboardactions}
+
+                                        />
+                                    </li>
                                 )
                                 }
                                 {this.props.allPostDataByUserId && this.props.allPostDataByUserId.wantedGoodOrService.map((allPostsByUser) =>
@@ -174,7 +190,8 @@ class EditVolunteerProfile extends Component{
                                         <li className="cardlabel-Opportunities"><span
                                             className="label-black">{allPostsByUser.description}</span>
                                             <span className="pull-right label-black"> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span>
-                                        </li>: null                                                            )
+                                        </li>: null
+                                )
                                 }
                                 {this.props.allPostDataByUserId && this.props.allPostDataByUserId.wantedGoodOrService.map((allPostsByUser) =>
                                     allPostsByUser.status === "PENDING" ?
