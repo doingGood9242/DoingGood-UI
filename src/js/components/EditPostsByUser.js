@@ -25,22 +25,6 @@ class EditPostsByUser extends React.Component {
         this.rateType = this.rateType.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleSubmit(event){
-        this.props.memberdashboardactions.updatePostsByUserAction(
-            this.state.goodsOrServicesSelected,
-            this.state.goods,
-            this.state.description,
-            this.state.rate,
-            this.state.minimum,
-            this.state.maximum,
-            this.state.rateType,
-            this.props.postType,
-            props.session ?  props.session.id : 0,
-            this.props.allPostsByUser.id);
-        this.props.handleCloseModal();
-    }
-
     goodsOrServicesSelected(event){
         this.setState({ goodsOrServicesSelected:event.target.value})
     }
@@ -61,6 +45,21 @@ class EditPostsByUser extends React.Component {
     }
     rateType(event){
         this.setState({ rateType:event.target.value})
+    }
+
+    handleSubmit(event){
+        this.props.memberdashboardactions.updatePostsByUserAction(
+            this.state.goodsOrServicesSelected,
+            this.state.goods,
+            this.state.description,
+            this.state.rate,
+            this.state.minimum,
+            this.state.maximum,
+            this.state.rateType,
+            this.props.postType,
+            props.session ?  props.session.id : 0,
+            this.props.allPostsByUser.id);
+        this.props.handleCloseModal();
     }
 
     render () {
@@ -92,18 +91,18 @@ class EditPostsByUser extends React.Component {
                         </div>
                         <Form.Label>Goods/Service:</Form.Label>
                         <input className='form-control' type="text" onChange={this.goods}
-                               defaultValue={this.props.allPostsByUser.goodOrService}/>
+                               defaultValue={this.props.allPostsByUser ? this.props.allPostsByUser.goodOrService : null}/>
                         <Form.Label>Description:</Form.Label>
                         <Form.Control type="text" onChange={this.description}
-                                      defaultValue={this.props.allPostsByUser.description}/>
+                                      defaultValue={this.props.allPostsByUser ? this.props.allPostsByUser.description :null}/>
                         <Form.Label>Rate:</Form.Label>
-                        <Form.Control type="text" onChange={this.rate} defaultValue={this.props.allPostsByUser.rate}/>
+                        <Form.Control type="text" onChange={this.rate} defaultValue={this.props.allPostsByUser ? this.props.allPostsByUser.rate : null}/>
                         <Form.Label>Minimum:</Form.Label>
                         <Form.Control type="text" onChange={this.minimum}
-                                      defaultValue={this.props.allPostsByUser.minimum}/>
+                                      defaultValue={this.props.allPostsByUser ? this.props.allPostsByUser.minimum : null}/>
                         <Form.Label>Maximum:</Form.Label>
                         <Form.Control type="text" onChange={this.maximum}
-                                      defaultValue={this.props.allPostsByUser.maximum}/>
+                                      defaultValue={this.props.allPostsByUser ? this.props.allPostsByUser.maximum : null}/>
                         <Form.Label>Rate Type</Form.Label>
                         {this.state.goodsOrServicesSelected === "GOOD" &&
                         <div>
@@ -131,7 +130,6 @@ class EditPostsByUser extends React.Component {
                     </button>
 
                 </Form>
-                }
             </ReactModal>
         );
     }
