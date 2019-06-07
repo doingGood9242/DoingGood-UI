@@ -41,13 +41,14 @@ const memberdashboardActions = {
                                       maximum,
                                       rateType,
                                       postType,
-                                      upId) {
+                                      upId,
+                                      id) {
         const request = {
             method: 'post',
             responseType: 'json',
             url: 'https://13.127.249.79:9500/api/posting/update',
             data: {
-                "description": description,
+                "description":description,
                 "goodOrService":goodsOrServicesSelected,
                 "minimum": parseInt(minimum, 10),
                 "maximum":parseInt(maximum, 10),
@@ -55,7 +56,7 @@ const memberdashboardActions = {
                 "rateType":rateType,
                 "postType":postType,
                 "upId": upId,
-                "id": 0
+                "id": id
             },
             headers: {
                 'Content-Type': 'application/json'

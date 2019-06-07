@@ -63,15 +63,15 @@ class EditUserProfile extends React.Component {
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label >Name</Form.Label>
-                        <Form.Control type="text" onChange={this.changeName} value={`${this.props.session.firstName} ${this.props.session.lastName}`} />
+                        <Form.Control type="text" onChange={this.changeName} defaultValue={`${this.props.session.firstName} ${this.props.session.lastName}`} />
                         <Form.Label>Address</Form.Label>
-                        <Form.Control type="text" onChange={this.changeAddress} value={`${this.props.session.address1}, ${this.props.session.address2}, ${this.props.session.city}, ${this.props.session.state}`}/>
+                        <Form.Control type="text" onChange={this.changeAddress} defaultValue={`${this.props.session.address1}, ${this.props.session.address2}, ${this.props.session.city}, ${this.props.session.state}`}/>
                         <Form.Label>About Me</Form.Label>
-                        <Form.Control type="text" onChange={this.changeAboutMe} value={this.props.session.aboutme}/>
+                        <Form.Control type="text" onChange={this.changeAboutMe} defaultValue={this.props.session.aboutme}/>
                         <Form.Label>Phone Number</Form.Label>
-                        <Form.Control type="text" onChange={this.changePhoneNumber} value={this.props.session.phoneNumber}/>
+                        <Form.Control type="text" onChange={this.changePhoneNumber} defaultValue={this.props.session.phoneNumber}/>
                         <Form.Label>Email Id</Form.Label>
-                        <Form.Control type="text" onChange={this.changeEmail} value={this.props.session.email}/>
+                        <Form.Control type="text" onChange={this.changeEmail} defaultValue={this.props.session.email}/>
                     </Form.Group>
                     <button className="btn btn-default goodsAndServicesButton goodsAndServicesButtonRight" onClick={this.handleSubmit} type="button">Save</button>
                     <button className="btn btn-default goodsAndServicesButton" onClick={this.props.handleCloseModal}>Close</button>

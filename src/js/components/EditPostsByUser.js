@@ -8,14 +8,13 @@ class EditPostsByUser extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            goodsOrServicesSelected:'',
-            goods:'',
-            description:'',
-            rate:'',
-            minimum:'',
-            maximum:'',
-            rateType:'',
-            upId: props.session ?  props.session.id : 0
+            goodsOrServicesSelected:this.props.allPostsByUser.goodOrService,
+            goods:this.props.allPostsByUser.goodOrService,
+            description:this.props.allPostsByUser.description,
+            rate:this.props.allPostsByUser.rate,
+            minimum:this.props.allPostsByUser.minimum,
+            maximum:this.props.allPostsByUser.maximum,
+            rateType:this.props.allPostsByUser.rateType
         };
         this.goodsOrServicesSelected = this.goodsOrServicesSelected.bind(this);
         this.goods = this.goods.bind(this);
@@ -37,7 +36,8 @@ class EditPostsByUser extends React.Component {
             this.state.maximum,
             this.state.rateType,
             this.props.postType,
-            this.state.upId);
+            props.session ?  props.session.id : 0,
+            this.props.allPostsByUser.id);
         this.props.handleCloseModal();
     }
 
@@ -83,18 +83,55 @@ class EditPostsByUser extends React.Component {
                 <h4 id="contained-modal-title" className="modal-title">Edit Post</h4>
                 <Form>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Label >Description</Form.Label>
-                        <Form.Control type="text" onChange={this.description} value={this.props.allPostsByUser.description} />
-                        <Form.Label>Rate</Form.Label>
-                        <Form.Control type="text" onChange={this.rate} value={this.props.allPostsByUser.rate}/>
-                        <Form.Label>Minimum</Form.Label>
-                        <Form.Control type="text" onChange={this.minimum} value={this.props.allPostsByUser.minimum}/>
-                        <Form.Label>Maximum</Form.Label>
-                        <Form.Control type="text" onChange={this.maximum} value={this.props.allPostsByUser.maximum}/>
+                        <Form.Label className="skill-text">Services/Goods Required</Form.Label>
+                        <div>
+                            <input className="goodsAndServices" type="radio" value="GOOD" name="goodRequired"
+                                   onChange={this.goodsOrServicesSelected}/>Goods
+                            <input className="goodsAndServices" type="radio" value="SERVICE" name="goodRequired"
+                                   onChange={this.goodsOrServicesSelected}/>Services
+                        </div>
+                        <Form.Label>Goods/Service:</Form.Label>
+                        <input className='form-control' type="text" onChange={this.goods}
+                               defaultValue={this.props.allPostsByUser.goodOrService}/>
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control type="text" onChange={this.description}
+                                      defaultValue={this.props.allPostsByUser.description}/>
+                        <Form.Label>Rate:</Form.Label>
+                        <Form.Control type="text" onChange={this.rate} defaultValue={this.props.allPostsByUser.rate}/>
+                        <Form.Label>Minimum:</Form.Label>
+                        <Form.Control type="text" onChange={this.minimum}
+                                      defaultValue={this.props.allPostsByUser.minimum}/>
+                        <Form.Label>Maximum:</Form.Label>
+                        <Form.Control type="text" onChange={this.maximum}
+                                      defaultValue={this.props.allPostsByUser.maximum}/>
+                        <Form.Label>Rate Type</Form.Label>
+                        {this.state.goodsOrServicesSelected === "GOOD" &&
+                        <div>
+                            <input type="radio" id="perItem" className="goodsAndServices" value="PERITEM"
+                                   name="rateType" onChange={this.rateType}/>
+                            <label htmlFor="perItem">Per Item</label>
+                        </div>
+                        }
+                        {this.state.goodsOrServicesSelected === "SERVICE" &&
+                        <div>
+                            <input type="radio" id="perHour" className="goodsAndServices" value="PERHOUR"
+                                   name="rateType" onChange={this.rateType}/>
+                            <label htmlFor="perHour">Per Hour</label>
+                            <input type="radio" id="perDay" className="goodsAndServices" value="PERDAY" name="rateType"
+                                   onChange={this.rateType}/>
+                            <label htmlFor="perDay">Per Day</label>
+                        </div>
+                        }
                     </Form.Group>
-                    <button className="btn btn-default goodsAndServicesButton goodsAndServicesButtonRight" onClick={this.handleSubmit} type="button">Save</button>
-                    <button className="btn btn-default goodsAndServicesButton" onClick={this.props.handleCloseModal}>Close</button>
+                    <button className="btn btn-default goodsAndServicesButton goodsAndServicesButtonRight"
+                            onClick={this.handleSubmit} type="button">Save
+                    </button>
+                    <button className="btn btn-default goodsAndServicesButton"
+                            onClick={this.props.handleCloseModal}>Close
+                    </button>
+
                 </Form>
+                }
             </ReactModal>
         );
     }

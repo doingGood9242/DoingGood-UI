@@ -32,7 +32,8 @@ class EditVolunteerProfile extends Component{
             showOfferedModal: false,
             showInterestModal:false,
             showUserEditModal:false,
-            showPostsByUserEditModal: false
+            showPostsByUserEditModal: false,
+            myPostIndex: 0
         };
         this.handleOfferedOpenModal = this.handleOfferedOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -54,7 +55,8 @@ class EditVolunteerProfile extends Component{
     }
 
     handlePostbyUserModal (event) {
-        this.setState({ showPostsByUserEditModal: true});
+        const id=parseInt(event.target.id.split("_")[1]);
+        this.setState({ showPostsByUserEditModal: true, myPostIndex: id});
     }
     handleCloseModal () {
         this.setState({
@@ -163,12 +165,12 @@ class EditVolunteerProfile extends Component{
                             <div className="card-body">
                                 <h5 className="cardtitle">My POSTS</h5>
                                 {this.props.allPostDataByUserId && this.props.allPostDataByUserId.offeredGoodOrService.map((allPostsByUser ,index) =>
-                                    <li className="cardlabel-Opportunities" onClick={this.handlePostbyUserModal}>
-                                        <span className="label-black">{allPostsByUser.description}</span><span className="pull-right label-black"> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span>
+                                    <li className="cardlabel-Opportunities" onClick={this.handlePostbyUserModal} id={`userPost_ ${index}`}>
+                                        <span className="label-black" id={`descriptionUserPost_ ${index}`}>{allPostsByUser.description}</span><span className="pull-right label-black" id={`rateUserPost_ ${index}`}> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span>
                                         <EditPostsByUser
                                         showModal={this.state.showPostsByUserEditModal}
                                         handleCloseModal={this.handleCloseModal}
-                                        allPostsByUser={this.props.allPostDataByUserId.offeredGoodOrService[index]}
+                                        allPostsByUser={this.props.allPostDataByUserId.offeredGoodOrService ? this.props.allPostDataByUserId.offeredGoodOrService[this.state.myPostIndex] : {}}
                                         session={this.props.session}
                                         memberdashboardactions={this.props.memberdashboardactions}
 
