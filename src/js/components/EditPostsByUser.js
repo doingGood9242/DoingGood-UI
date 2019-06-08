@@ -8,13 +8,15 @@ class EditPostsByUser extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            goodsOrServicesSelected:this.props.allPostsByUser.goodOrService,
+            goodsOrServicesSelected: this.props.allPostsByUser.goodOrService,
             goods:this.props.allPostsByUser.goodOrService,
             description:this.props.allPostsByUser.description,
             rate:this.props.allPostsByUser.rate,
             minimum:this.props.allPostsByUser.minimum,
             maximum:this.props.allPostsByUser.maximum,
-            rateType:this.props.allPostsByUser.rateType
+            rateType:this.props.allPostsByUser.rateType,
+            id: this.props.allPostsByUser.id,
+            postType:this.props.allPostsByUser.postType
         };
         this.goodsOrServicesSelected = this.goodsOrServicesSelected.bind(this);
         this.goods = this.goods.bind(this);
@@ -56,8 +58,8 @@ class EditPostsByUser extends React.Component {
             this.state.minimum,
             this.state.maximum,
             this.state.rateType,
-            this.props.postType,
-            props.session ?  props.session.id : 0,
+            this.state.postType,
+            this.props.session ?  this.props.session.id : 0,
             this.props.allPostsByUser.id);
         this.props.handleCloseModal();
     }
