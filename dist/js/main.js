@@ -60642,7 +60642,6 @@ var ShowInterestModal = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (ShowInterestModal.__proto__ || Object.getPrototypeOf(ShowInterestModal)).call(this));
 
         _this.handleSubmit = _this.handleSubmit.bind(_this);
-
         return _this;
     }
 

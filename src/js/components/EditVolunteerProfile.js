@@ -168,16 +168,16 @@ class EditVolunteerProfile extends Component{
                             <div className="card-body">
                                 <h5 className="cardtitle">My POSTS</h5>
                                 {this.props.allPostDataByUserId && this.props.allPostDataByUserId.offeredGoodOrService.map((allPostsByUser ,index) =>
-                                    <li className="cardlabel-Opportunities" id={`userPost_ ${index}`}>
+                                    <li className="cardlabel-Opportunities" id={`userPost_ ${index}`} onClick={this.handlePostbyUserModal}>
                                         <span className="label-black" id={`descriptionUserPost_ ${index}`}>{allPostsByUser.description}</span><span className="pull-right label-black" id={`rateUserPost_ ${index}`}> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span>
-                                        {/*<EditPostsByUser*/}
-                                        {/*showModal={this.state.showPostsByUserEditModal}*/}
-                                        {/*handleCloseModal={this.handleCloseModal}*/}
-                                        {/*allPostsByUser={this.props.allPostDataByUserId.offeredGoodOrService ? this.props.allPostDataByUserId.offeredGoodOrService[this.state.myPostIndex] : {}}*/}
-                                        {/*session={this.props.session}*/}
-                                        {/*memberdashboardactions={this.props.memberdashboardactions}*/}
+                                        <EditPostsByUser
+                                        showModal={this.state.showPostsByUserEditModal}
+                                        handleCloseModal={this.handleCloseModal}
+                                        allPostsByUser={this.props.allPostDataByUserId.offeredGoodOrService ? this.props.allPostDataByUserId.offeredGoodOrService[this.state.myPostIndex] : {}}
+                                        session={this.props.session}
+                                        memberdashboardactions={this.props.memberdashboardactions}
 
-                                        {/*/>*/}
+                                        />
                                     </li>
                                 )
                                 }

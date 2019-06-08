@@ -5,7 +5,6 @@ class ShowInterestModal extends React.Component {
     constructor () {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
     handleSubmit(event){
         this.props.searchPostingAction.showInterestdAction(this.props.posts.id, this.props.session.id);
