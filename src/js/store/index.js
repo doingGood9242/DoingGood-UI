@@ -6,6 +6,9 @@ import rootReducer from "../reducers/index";
 
 // Configure store with reducers and create
 const store = createStore(rootReducer, compose(applyMiddleware(thunk, logger),autoRehydrate()));
-persistStore(store);
+const persistConfig = {
+    whitelist: ['loginReducer', 'postRequestServiceReducer', 'organizationReducer', 'memberDashboardReducer', 'toastrReducer']
+};
+persistStore(store, persistConfig );
 
 export default store;

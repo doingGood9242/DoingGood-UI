@@ -41,6 +41,9 @@ class EditVolunteerProfile extends Component{
         this.gotosearchpostings=this.gotosearchpostings.bind(this);
         this.handleUserEditModal=this.handleUserEditModal.bind(this);
         this.handlePostbyUserModal=this.handlePostbyUserModal.bind(this);
+    }
+
+    componentWillMount() {
         this.props.memberdashboardactions.allPostingByUserIdAction(this.props.session.id);
     }
 
