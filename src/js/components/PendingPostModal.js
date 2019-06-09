@@ -1,10 +1,11 @@
 import ReactModal from "react-modal";
 import React from "react";
 import { Form, Button } from 'react-bootstrap'
+import "../../assests/sass/editVolunteerProfile.scss";
 // import { Form, Button } from "react-bootstrap";
 
 
-class EditPostsByUser extends React.Component {
+class PendingPostModal extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -16,7 +17,8 @@ class EditPostsByUser extends React.Component {
             maximum:this.props.allPostsByUser.maximum,
             rateType:this.props.allPostsByUser.rateType,
             id: this.props.allPostsByUser.id,
-            postType:this.props.allPostsByUser.postType
+            postType:this.props.allPostsByUser.postType,
+            newUser: ''
         };
         this.goodsOrServicesSelected = this.goodsOrServicesSelected.bind(this);
         this.goods = this.goods.bind(this);
@@ -26,6 +28,7 @@ class EditPostsByUser extends React.Component {
         this.maximum = this.maximum.bind(this);
         this.rateType = this.rateType.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onUserChange = this.onUserChange.bind(this);
     }
     goodsOrServicesSelected(event){
         this.setState({ goodsOrServicesSelected:event.target.value})
@@ -63,6 +66,13 @@ class EditPostsByUser extends React.Component {
             this.props.allPostsByUser.id);
         this.props.handleCloseModal();
     }
+    onUserChange(event){
+        if(event.target.value === "Select User") {
+            this.setState({newUser: event.target.value});
+        }else{
+            this.setState({newUser: event.target.value });
+        }
+    }
 
     render () {
         const customStyles = {
@@ -75,13 +85,15 @@ class EditPostsByUser extends React.Component {
                 overlfow: 'scroll'
             }
         };
+        const listOfUsers =this.props.allPostsByUser.users;
         return (
             <ReactModal
                 isOpen={this.props.showModal}
                 contentLabel="Minimal Modal Example"
                 style={customStyles}
             >
-                <h4 id="contained-modal-title" className="modal-title">Edit Post</h4>
+                <h4 id="contained-modal-title" className="modal-title">Edit Post Details</h4>
+                <label className="skill-text">Post Details:</label>
                 <Form>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label className="skill-text">Services/Goods Required</Form.Label>
@@ -124,11 +136,24 @@ class EditPostsByUser extends React.Component {
                         </div>
                         }
                     </Form.Group>
-                    <button className="btn btn-default goodsAndServicesButton goodsAndServicesButtonRight"
+                    <button className="btn btn-default signOffButton"
                             onClick={this.handleSubmit} type="button">Save Post
                     </button>
+                    <br/>
+                    <label className="control-label">Post Status:</label>
+                    <div>Following Volunteers and Charity Organisations have shown interest in your post.</div>
+                    <label className="skill-text"> Select: </label>
+                    <div className="form-group m-0">
+                        <select className="form-control" value={this.state.newUser} onChange={this.onUserChange}>
+                            <option>Select User</option>
+                                {listOfUsers.map((user)=>
+                            <option>{user.description}</option>
+                            )}
 
-
+                        </select>
+                        <br/>
+                        <button className="btn btn-default signOffButton" type="button">Sign off</button>
+                    </div>
                     <button className="btn btn-default goodsAndServicesButton"
                             onClick={this.props.handleCloseModal}>Close
                     </button>
@@ -138,7 +163,4 @@ class EditPostsByUser extends React.Component {
         );
     }
 }
-
-const props = {};
-
-export default EditPostsByUser;
+export default PendingPostModal;
