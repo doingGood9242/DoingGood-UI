@@ -34,7 +34,7 @@ let signUpUserActions = {
         const request = {
             method: 'post',
             responseType: 'json',
-            url: 'http://13.127.249.79:9500/api/organization/registration',
+            url: 'https://13.127.249.79:9500/api/organization/registration',
             data: {
                 "about": "string",
                 "city": orgcreds.city,

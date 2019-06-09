@@ -152,6 +152,8 @@ class PendingPostModal extends React.Component {
 
                         </select>
                         <br/>
+                        <Form.Label> className="skill-text">Agreed upon price:</Form.Label>
+                        <Form.Control required/>
                         <button className="btn btn-default signOffButton" type="button">Sign off</button>
                     </div>
                     <button className="btn btn-default goodsAndServicesButton"
