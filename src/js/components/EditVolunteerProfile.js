@@ -33,7 +33,9 @@ class EditVolunteerProfile extends Component{
             showInterestModal:false,
             showUserEditModal:false,
             showPostsByUserEditModal: false,
-            myPostIndex: 0
+            showPostsByUserEditModalWanted: false,
+            myPostIndex: 0,
+            myPostIndexWanted: 0
         };
         this.handleOfferedOpenModal = this.handleOfferedOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -41,6 +43,7 @@ class EditVolunteerProfile extends Component{
         this.gotosearchpostings=this.gotosearchpostings.bind(this);
         this.handleUserEditModal=this.handleUserEditModal.bind(this);
         this.handlePostbyUserModal=this.handlePostbyUserModal.bind(this);
+        this.handleWantedPostbyUserModal=this.handleWantedPostbyUserModal.bind(this);
     }
 
     componentWillMount() {
@@ -61,15 +64,21 @@ class EditVolunteerProfile extends Component{
         const id=parseInt(event.target.id.split("_")[1]);
         this.setState({ showPostsByUserEditModal: true, myPostIndex: id});
     }
+
+    handleWantedPostbyUserModal (event) {
+        const id=parseInt(event.target.id.split("_")[1]);
+        this.setState({ showPostsByUserEditModalWanted: true, myPostIndexWanted: id});
+    }
     handleCloseModal () {
-        if(this.state.showPostsByUserEditModal) {
+        if(this.state.showPostsByUserEditModal || this.state.showPostsByUserEditModalWanted) {
             this.props.memberdashboardactions.allPostingByUserIdAction(this.props.session.id);
         }
         this.setState({
             showOfferedModal: false,
             showWantedModal:false,
             showUserEditModal:false,
-            showPostsByUserEditModal:false});
+            showPostsByUserEditModal:false,
+            showPostsByUserEditModalWanted: false});
     }
 
     gotosearchpostings (){
@@ -172,12 +181,16 @@ class EditVolunteerProfile extends Component{
                                 <h5 className="cardtitle">My POSTS</h5>
                                 {this.props.allPostDataByUserId && this.props.allPostDataByUserId.offeredGoodOrService.map((allPostsByUser ,index) =>
                                     <li className="cardlabel-Opportunities" onClick={this.handlePostbyUserModal}>
-                                        <span className="label-black" id={`descriptionUserPost_ ${index}`}>{allPostsByUser.description}</span><span className="pull-right label-black" id={`rateUserPost_ ${index}`}> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span>
+                                        <span className="label-black" id={`descriptionUserPost_ ${index}`}>{allPostsByUser.description}</span>
+                                        <span className="pull-right label-black" id={`rateUserPost_ ${index}`}> ${allPostsByUser.rate}/{allPostsByUser.rateType === "PERITEM" ? "item" : "hour"}</span>
                                     </li>
                                 )
                                 }
-                                {this.props.allPostDataByUserId && this.props.allPostDataByUserId.wantedGoodOrService.map((allPostsByUser) =>
-                                    <li className="cardlabel-Opportunities"><span className="label-black">{allPostsByUser.description}</span><span className="pull-right label-black"> ${ allPostsByUser.rate }/{ allPostsByUser.rateType === "PERITEM" ? "item" : "hour" }</span></li>
+                                {this.props.allPostDataByUserId && this.props.allPostDataByUserId.wantedGoodOrService.map((allPostsByUser, index) =>
+                                    <li className="cardlabel-Opportunities" onClick ={this.handleWantedPostbyUserModal}>
+                                        <span className="label-black" id={`wantedDescriptionUserPost_ ${index}`}>{allPostsByUser.description}</span>
+                                        <span className="pull-right label-black" id={`wantedRateUserPost_ ${index}`}> ${ allPostsByUser.rate }/{ allPostsByUser.rateType === "PERITEM" ? "item" : "hour" }</span>
+                                    </li>
                                 )
                                 }
                             </div>
@@ -291,6 +304,15 @@ class EditVolunteerProfile extends Component{
                         session={this.props.session}
                         memberdashboardactions={this.props.memberdashboardactions}
 
+                    />
+                    }
+                    {this.props.allPostDataByUserId && this.props.allPostDataByUserId.wantedGoodOrService.length > 0 &&
+                    <EditPostsByUser
+                        showModal={this.state.showPostsByUserEditModalWanted}
+                        handleCloseModal={this.handleCloseModal}
+                        allPostsByUser={this.props.allPostDataByUserId.wantedGoodOrService ? this.props.allPostDataByUserId.wantedGoodOrService[this.state.myPostIndexWanted] : {}}
+                        session={this.props.session}
+                        memberdashboardactions={this.props.memberdashboardactions}
                     />
                     }
                 </div>

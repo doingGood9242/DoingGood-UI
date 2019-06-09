@@ -34,8 +34,8 @@ const searchPostingActions = {
                         });
                     }
                 },err =>{
-                    if(err.response.data.status === 400){
-                        toastr.error('Error ', 'OTP is expired.You cannot reset password');
+                    if(err.response.status === 400){
+                        toastr.error('Error ', 'Posts cannot be loaded');
                     }
                 })
         }
@@ -105,12 +105,14 @@ const searchPostingActions = {
                     if (response.status === 200) {
                         dispatch({
                             type: 'SHOWINTEREST',
-                            // data: response.data
                         });
+                        toastr.success('', 'You showed interest on this post');
                     }
                 },err =>{
-                    if(err.response.data.status === 400){
-                        toastr.error('Error ', 'You cannot show interest');
+                    if(err.response.status === 400){
+                        toastr.error('Error ', 'You cannot show interest on this post');
+                    }else if(err.response.status === 500){
+                        toastr.error('Error ', 'You already showed interest on this post');
                     }
                 })
         }

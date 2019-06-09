@@ -70,6 +70,7 @@ const memberdashboardActions = {
                             type: 'UPDATEPOSTBYUSER',
                             // data: response.data
                         });
+                        toastr.success('', 'Successfully updated the post');
                     }
                 },err =>{
                     if(err.response.data.status === 400){
