@@ -58,6 +58,49 @@ const organizationActions = {
                     }
                 })
         }
+    },
+    OrgUpdateAction: function(organizationName,
+                                websiteUrl,
+                                aboutMe,
+                                emailId,
+                                id) {
+        const request = {
+            method: 'post',
+            responseType: 'json',
+            url: 'https://13.127.249.79:9500/api/organization/organizationUpdate',
+            data: {
+                "about": aboutMe,
+                "businessAddress1": "string",
+                "businessAddress2": "string",
+                "city": "string",
+                "email": emailId,
+                "governmentID": "string",
+                "organizationName":organizationName,
+                "organizationType": "string",
+                "state": "string",
+                "ulpId":id,
+                "websiteUrl": websiteUrl,
+                "zipCode": 0
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+        return (dispatch) => {
+            axios(request)
+                .then(response => {
+                    if (response.status === 200) {
+                        dispatch({
+                            type: 'ORGUPDATE',
+                            // data: response.data
+                        });
+                    }
+                },err =>{
+                    if(err.response.data.status === 400){
+                        toastr.error('Error ', 'Occured');
+                    }
+                })
+        }
     }
 };
 

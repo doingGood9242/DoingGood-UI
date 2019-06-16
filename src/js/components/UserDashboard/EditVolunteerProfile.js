@@ -210,6 +210,14 @@ class EditVolunteerProfile extends Component{
                         </div>
                         <div className="card w-auto">
                             <div className="card-body">
+                                <h5 className="cardtitle">My Doing Good Success</h5>
+                                <ul className="nobullet">
+                                <li className="cardLabel-raised">$$$ RAISED (to date)<span className="span-raised"> $0</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="card w-auto">
+                            <div className="card-body">
                                 <h5>My Interested Charitable Organization:</h5>
                                 <p>Select\Edit Charitable Organization you wish to donate to</p>
                                 <div className="form-group m-0">
@@ -226,14 +234,6 @@ class EditVolunteerProfile extends Component{
                                 <button className="btn btn-default signOffButton" onClick={this.handleSubmitOrg}
                                         type="button">Save
                                 </button>
-                            </div>
-                        </div>
-                        <div className="card w-auto">
-                            <div className="card-body">
-                                <h5 className="cardtitle">My Doing Good Success</h5>
-                                <ul className="nobullet">
-                                <li className="cardLabel-raised">$$$ RAISED (to date)<span className="span-raised"> $0</span></li>
-                                </ul>
                             </div>
                         </div>
                     </div>

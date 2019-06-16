@@ -18,8 +18,8 @@ class PendingPostModal extends React.Component {
             rateType:this.props.allPostsByUser.rateType,
             id: this.props.allPostsByUser.id,
             postType:this.props.allPostsByUser.postType,
-            newUser: '',
-            newOrg: '',
+            newUser: null,
+            newOrg: null,
             agreedUponPrice:null,
             checkedGood: this.props.allPostsByUser.goodOrService ? (this.props.allPostsByUser.goodOrService === 'GOOD') : false,
             checkedService: this.props.allPostsByUser.goodOrService ? (this.props.allPostsByUser.goodOrService === 'SERVICE') : false,
@@ -79,27 +79,43 @@ class PendingPostModal extends React.Component {
             this.state.postType,
             this.props.session ?  this.props.session.id : 0,
             this.props.allPostsByUser.id);
-        this.props.handleCloseModal();
+
+        if(this.props.session.userRole === "ORGANIZATION"){
+            this.props.memberdashboardactions.closeModal();
+        }else {
+            this.props.handleCloseModal();
+        }
     }
     onUserChange(event){
         if(event.target.value === "") {
-            this.setState({newUser: event.target.value});
+            this.setState({newUser: null});
         }else{
             this.setState({newUser: event.target.value });
         }
     }
+    // producerSignOff(){
+    //     this.props.memberdashboardactions.updatePostOnAgreedPrice(this.state.newUser,this.props.allPostsByUser.id,
+    //         this.state.agreedUponPrice,'PRODUCER_SIGNOFF');
+    // }
+    agreedPrice(event){
+        this.setState({agreedUponPrice:event.target.value})
+    }
 
     onOrgChange(event){
         if(event.target.value === "") {
-            this.setState({newOrg: event.target.value});
+            this.setState({newOrg: null});
         }else{
             this.setState({newOrg: event.target.value });
         }
     }
     producerSignOff(){
-        this.props.memberdashboardactions.updatePostOnAgreedPrice(this.state.newUser,this.props.allPostsByUser.id,
+        this.props.memberdashboardactions.updatePostOnAgreedPrice(this.state.newUser ? this.state.newUser : this.state.newOrg,this.props.allPostsByUser.id,
             this.state.agreedUponPrice,'PRODUCER_SIGNOFF');
-        this.props.handleCloseModal();
+        if(this.props.session.userRole === "ORGANIZATION"){
+            this.props.memberdashboardactions.closeModal();
+        }else {
+            this.props.handleCloseModal();
+        }
     }
     agreedPrice(event){
         this.setState({agreedUponPrice:event.target.value})
@@ -186,7 +202,7 @@ class PendingPostModal extends React.Component {
                         <div>OR</div>
                         <br/>
                         <select className="form-control" onChange={this.onOrgChange} disabled={this.state.newUser}>
-                            <option value=''>Select User</option>
+                            <option value=''>Select Organisation</option>
                             {listOfOrgs && listOfOrgs.map((user)=>
                                 <option value={user.id}>{user.name}</option>
                             )}

@@ -1,13 +1,18 @@
 import React from 'react';
+import EditUserProfile from "../UserDashboard/EditUserProfile";
+import EditOrgProfile from "./EditOrgProfile";
 
 const EditOrganizationProfile = (props) =>{
-    const { organization } = props;
+    const { organization, actions, isModalOpen } = props;
     return(
         <div className="col-md-4 col-sm-12">
             <div className="card w-auto">
                 <div className="card-body">
                     <ul className="nobullet">
-                        <li className="cardlabel-Orange">About Me</li>{/*Need to write click event*/}
+                        <li className="cardlabel-Orange">About Me
+                            <span className="pull-right">
+                                <a onClick={actions.openModal}>Edit</a>
+                            </span></li>{/*Need to write click event*/}
                         <li className="cardlabel">{organization.organizationName}</li>
                         <li className="cardlabel">{organization.websiteUrl}</li>
                         <li className="cardlabel">{organization.aboutme}</li>
@@ -23,6 +28,12 @@ const EditOrganizationProfile = (props) =>{
                     </ul>
                 </div>
             </div>
+            <EditOrgProfile
+                showModal={isModalOpen}
+                handleCloseModal={actions}
+                session={organization}
+                memberdashboardactions={actions}
+            />
 
         </div>
     )

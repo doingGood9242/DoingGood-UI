@@ -105,6 +105,7 @@ const memberdashboardActions = {
                 "lastName": lastName,
                 "phone": phoneNumber,
                 "state":  state,
+                "email" : emailId,
                 "ulpId": id,
                 "zipCode":zipCode
             },

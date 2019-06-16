@@ -5,8 +5,6 @@ import postRequestServiceReducer from "./postRequestReducer";
 import organizationReducer from "./organizationReducer";
 import memberDashboardReducer from "./memberDashboardReducer";
 import organizationDashboardReducer from "./organizationDashboardReducer";
-
-
 // Combine all reducers as root reducer
 export default combineReducers(
     {

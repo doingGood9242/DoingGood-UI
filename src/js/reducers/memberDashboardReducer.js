@@ -1,7 +1,8 @@
 import {POSTBYUSERID, ASSIGNEDPOSTTOCONSUMER} from "../actions/memberdashboardActions";
 
 const initialState = {
-    allPostDataByUserId: null
+    allPostDataByUserId: null,
+    assignedPostsBToConsumer: null
 };
 
 const memberDashboardReducer = (state=initialState, action) => {

@@ -19,7 +19,11 @@ class ConsumerSignOffModal extends React.Component {
     producerSignOff(){
         this.props.memberdashboardactions.updatePostOnAgreedPrice(this.props.session.id,this.props.allPostsByUser.id,
             this.props.allPostsByUser.offerPrice,'CONSUMER_SIGNOFF');
-        this.props.handleCloseModal();
+        if(this.props.session.userRole === "ORGANIZATION"){
+            this.props.memberdashboardactions.closeModal()
+        }else {
+            this.props.handleCloseModal();
+        }
     }
 
     render () {
