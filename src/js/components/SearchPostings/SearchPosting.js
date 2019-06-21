@@ -115,6 +115,7 @@ class SearchPosting extends Component {
                        <Col><button className="btn btnPostOrange" onClick={this.gotosearchpostings}><span style={{'fontFamily':'Gotham-Book','fontSize':'16','color':'white'}}>Search Postings</span></button>
                        </Col>
                        <Col><Link to={this.props.session.userRole === "ORGANIZATION"? "/organizationDashboard" :"/editVoluteerProfile"} className="current"><span className="textcenter">My Dashboard</span></Link></Col>
+
                        <Col><Link to= "/login" className="current"><span className="textcenter logoutText">Logout</span></Link></Col>
                    </Row>
                </Container>

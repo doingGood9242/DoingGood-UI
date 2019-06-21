@@ -167,7 +167,7 @@ class PendingPostModal extends React.Component {
                     <div>Following Volunteers and Charity Organisations have shown interest in your post.</div>
                     <label className="skill-text"> Select: </label>
                     <div className="form-group m-0">
-                        <select className="form-control" onChange={this.onUserChange} disabled={this.state.newOrg}>
+                        <select className="form-control" onChange={this.onUserChange} disabled={this.state.newOrg}>r
                                 {listOfUsers && listOfUsers.map((user)=>
                             <option value={user.id}>{user.name}</option>
                             )}
